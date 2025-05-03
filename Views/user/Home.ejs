@@ -1,391 +1,259 @@
-<%-include("../../views/partials/user/header.ejs")%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Shop - Home</title>
-   <link rel="stylesheet" href="../styles/home.css">
+    <title>FrameDecor - Quality Frames</title>
+    <link rel="stylesheet" href="../styles/home.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-   
-<!-- Hero section -->
-<section class="hero">
-    <div class="container">
-        <h1>Discover Stunning Home Decor Frames</h1>
-        <p>Transform your space with our curated collection of frames, with free shipping on orders over $50</p>
-        <div class="hero-buttons">
-            <a href="/products" class="btn">Shop Now</a>
-            <a href="/deals" class="btn btn-outline">View Deals</a>
+    <%-include("../../views/partials/user/header.ejs")%>
+    <!-- Hero Carousel -->
+    <section class="hero-carousel">
+        <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+            <div>
+                <h1>Quality Frames for Every Space</h1>
+                <p>Discover our collection with free shipping over $75.</p>
+                <a href="/products" class="btn">Shop Now</a>
+            </div>
         </div>
-    </div>
-</section>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+            <div>
+                <h1>Timeless Designs</h1>
+                <p>Elevate your decor with our handcrafted frames.</p>
+                <a href="/products" class="btn">Explore Collection</a>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1513519683267-4ee5952d73e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+            <div>
+                <h1>Modern Minimalism</h1>
+                <p>Sleek designs for contemporary homes.</p>
+                <a href="/products" class="btn">Browse Now</a>
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+        </div>
+    </section>
 
-<!-- Features section -->
-<section class="section">
-    <div class="container">
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-truck"></i>
-                </div>
-                <h3>Free Shipping</h3>
-                <p>On orders over $50</p>
+    <!-- Main Content -->
+    <section class="main-content container">
+        <aside class="sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="/category/modern">Modern Frames</a></li>
+                <li><a href="/category/vintage">Vintage Frames</a></li>
+                <li><a href="/category/rustic">Rustic Frames</a></li>
+                <li><a href="/category/minimalist">Minimalist Frames</a></li>
+                <li><a href="/category/ornate">Ornate Frames</a></li>
+            </ul>
+            <h3>Price Range</h3>
+            <ul>
+                <li><a href="/price/under-50">Under $50</a></li>
+                <li><a href="/price/50-100">$50 - $100</a></li>
+                <li><a href="/price/over-100">Over $100</a></li>
+            </ul>
+        </aside>
+        <div class="content-area">
+            <div class="section-title">
+                <h2>Featured Frames</h2>
+                <p>Our handpicked selection for you</p>
             </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-undo"></i>
+            <div class="products">
+                <div class="product-card">
+                    <div class="sale-badge">SALE</div>
+                    <img src="https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gold Frame">
+                    <div class="product-card-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h3>Gold Frame</h3>
+                        <p>Elegant gold frame with intricate detailing</p>
+                        <span class="price">$79.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <h3>Easy Returns</h3>
-                <p>30-day return policy</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Rustic Oak Frame">
+                    <div class="product-card-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Rustic Oak Frame</h3>
+                        <p>Handcrafted oak with a natural finish</p>
+                        <span class="price">$49.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <h3>Secure Payment</h3>
-                <p>100% secure checkout</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-headset"></i>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Modern Black Frame">
+                    <div class="product-card-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <h3>Modern Black Frame</h3>
+                        <p>Sleek black frame for minimalist decor</p>
+                        <span class="price">$39.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <h3>24/7 Support</h3>
-                <p>Dedicated support</p>
+                <div class="product-card">
+                    <div class="sale-badge">SALE</div>
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Vintage Silver Frame">
+                    <div class="product-card-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <h3>Vintage Silver Frame</h3>
+                        <p>Classic silver frame with a timeless look</p>
+                        <span class="price">$59.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Categories section -->
-<section class="section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Shop by Category</h2>
-            <p>Browse our wide selection of home decor frames by category</p>
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Join Our Newsletter</h2>
+            <p>Receive updates on new arrivals and special offers.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
         </div>
-        
-        <div class="categories">
-            <div class="category-card">
-                <img src="https://placeholder.pics/svg/300/333333-1A1A1A/FFFFFF/Modern%20Frames" alt="Modern Frames">
-                <div class="category-card-content">
-                    <h3>Modern Frames</h3>
-                    <a href="/category/modern-frames" class="btn">View Products</a>
-                </div>
-            </div>
-            
-            <div class="category-card">
-                <img src="https://placeholder.pics/svg/300/333333-1A1A1A/FFFFFF/Rustic%20Frames" alt="Rustic Frames">
-                <div class="category-card-content">
-                    <h3>Rustic Frames</h3>
-                    <a href="/category/rustic-frames" class="btn">View Products</a>
-                </div>
-            </div>
-            
-            <div class="category-card">
-                <img src="https://placeholder.pics/svg/300/333333-1A1A1A/FFFFFF/Vintage%20Frames" alt="Vintage Frames">
-                <div class="category-card-content">
-                    <h3>Vintage Frames</h3>
-                    <a href="/category/vintage-frames" class="btn">View Products</a>
-                </div>
-            </div>
-            
-            <div class="category-card">
-                <img src="https://placeholder.pics/svg/300/333333-1A1A1A/FFFFFF/Minimalist%20Frames" alt="Minimalist Frames">
-                <div class="category-card-content">
-                    <h3>Minimalist Frames</h3>
-                    <a href="/category/minimalist-frames" class="btn">View Products</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Featured Products section -->
-<section class="section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Featured Frames</h2>
-            <p>Handpicked frames that our customers love</p>
-        </div>
-        
-        <div class="products">
-            <div class="product-card">
-                <div class="sale-badge">SALE</div>
-                <img src="https://placeholder.pics/svg/400/333333-1A1A1A/FFFFFF/Modern%20Black%20Frame" alt="Modern Black Frame">
-                <div class="product-card-content">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>Modern Black Frame</h3>
-                    <p>Sleek, matte black frame perfect for contemporary spaces</p>
-                    <span class="price">$49.99</span>
-                    <div class="product-card-actions">
-                        <button class="add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <img src="https://placeholder.pics/svg/400/333333-1A1A1A/FFFFFF/Rustic%20Wood%20Frame" alt="Rustic Wood Frame">
-                <div class="product-card-content">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Rustic Wood Frame</h3>
-                    <p>Handcrafted wooden frame with a distressed finish</p>
-                    <span class="price">$39.99</span>
-                    <div class="product-card-actions">
-                        <button class="add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <img src="https://placeholder.pics/svg/400/333333-1A1A1A/FFFFFF/Vintage%20Gold%20Frame" alt="Vintage Gold Frame">
-                <div class="product-card-content">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <h3>Vintage Gold Frame</h3>
-                    <p>Ornate frame with a classic gold patina for timeless elegance</p>
-                    <span class="price">$59.99</span>
-                    <div class="product-card-actions">
-                        <button class="add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <div class="sale-badge">SALE</div>
-                <img src="https://placeholder.pics/svg/400/333333-1A1A1A/FFFFFF/Minimalist%20White%20Frame" alt="Minimalist White Frame">
-                <div class="product-card-content">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <h3>Minimalist White Frame</h3>
-                    <p>Clean, simple white frame for a modern, uncluttered look</p>
-                    <span class="price">$29.99</span>
-                    <div class="product-card-actions">
-                        <button class="add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- New Arrivals section -->
-<section class="section">
-    <div class="container">
-        <div class="section-title">
-            <h2>New Arrivals</h2>
-            <p>Check out our latest home decor frames</p>
-        </div>
-        
-        <div class="products">
-            <div class="product-card">
-                <img src="https://placeholder.pics/svg/400/333333-1A1A1A/FFFFFF/Industrial%20Metal%20Frame" alt="Industrial Metal Frame">
-                <div class="product-card-content">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Industrial Metal Frame</h3>
-                    <p>Sturdy metal frame with a raw, urban aesthetic</p>
-                    <span class="price">$54.99</span>
-                    <div class="product-card-actions">
-                        <button class="add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <img src="https://placeholder.pics/svg/400/333333-1A1A1A/FFFFFF/Bohemian%20Woven%20Frame" alt="Bohemian Woven Frame">
-                <div class="product-card-content">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <h3>Bohemian Woven Frame</h3>
-                    <p>Unique frame with handwoven accents for a boho vibe</p>
-                    <span class="price">$44.99</span>
-                    <div class="product-card-actions">
-                        <button class="add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <img src="https://placeholder.pics/svg/400/333333-1A1A1A/FFFFFF/Art%20Deco%20Frame" alt="Art Deco Frame">
-                <div class="product-card-content">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <h3>Art Deco Frame</h3>
-                    <p>Geometric design with bold, elegant lines</p>
-                    <span class="price">$64.99</span>
-                    <div class="product-card-actions">
-                        <button class="add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <img src="https://placeholder.pics/svg/400/333333-1A1A1A/FFFFFF/Floating%20Glass%20Frame" alt="Floating Glass Frame">
-                <div class="product-card-content">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>Floating Glass Frame</h3>
-                    <p>Modern frame with a floating glass effect for photos</p>
-                    <span class="price">$34.99</span>
-                    <div class="product-card-actions">
-                        <button class="add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Newsletter section -->
-<section class="newsletter">
-    <div class="container">
-        <h2>Subscribe to Our Newsletter</h2>
-        <p>Get updates on new frames and exclusive offers</p>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Your email address" required>
-            <button type="submit">Subscribe</button>
-        </form>
-    </div>
-</section>
-<script>
-    // Mobile menu toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-        document.getElementById('mainNav').classList.toggle('active');
-        
-        // Change icon based on menu state
-        const icon = this.querySelector('i');
-        if (icon.classList.contains('fa-bars')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-    
-    // Add to Cart functionality
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function() {
-            // Get current cart count
-            const cartCountElement = document.querySelector('.cart-count');
-            let currentCount = parseInt(cartCountElement.textContent);
-            
-            // Update cart count
-            cartCountElement.textContent = currentCount + 1;
-            
-            // Show success message
-            const productName = this.closest('.product-card-content').querySelector('h3').textContent;
-            
-            // Create toast notification
-            const toast = document.createElement('div');
-            toast.style.position = 'fixed';
-            toast.style.bottom = '20px';
-            toast.style.right = '20px';
-            toast.style.backgroundColor = '#4f46e5';
-            toast.style.color = 'white';
-            toast.style.padding = '1rem';
-            toast.style.borderRadius = '0.5rem';
-            toast.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            toast.style.zIndex = '1000';
-            toast.style.display = 'flex';
-            toast.style.alignItems = 'center';
-            toast.style.gap = '0.5rem';
-            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${productName} added to cart!`;
-            
-            document.body.appendChild(toast);
-            
-            // Remove toast after 3 seconds
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.5s ease';
-                setTimeout(() => {
-                    document.body.removeChild(toast);
-                }, 500);
-            }, 3000);
-        });
-    });
-</script>
-
+    </section>
     <%-include("../../views/partials/user/footer.ejs")%>
-
-    
+   
 
     <script>
-        // Simple JavaScript for the "Add to Cart" buttons
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            const icon = this.querySelector('i');
+            nav.classList.toggle('active');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Carousel functionality
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
+            });
+        }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                currentSlide = i;
+                showSlide(currentSlide);
+            });
+        });
+
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Add to cart functionality with toast
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
-                // Get current cart count
                 const cartCountElement = document.querySelector('.cart-count');
                 let currentCount = parseInt(cartCountElement.textContent);
-                
-                // Update cart count
                 cartCountElement.textContent = currentCount + 1;
-                
-                // Show success message
-                alert('Product added to cart!');
+
+                const productName = this.closest('.product-card-content').querySelector('h3').textContent;
+                const toast = document.createElement('div');
+                Object.assign(toast.style, {
+                    position: 'fixed',
+                    bottom: '20px',
+                    right: '20px',
+                    backgroundColor: '#4CAF50',
+                    color: '#fff',
+                    padding: '0.8rem 1.2rem',
+                    borderRadius: '4px',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                    zIndex: '1000',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    opacity: '1',
+                    transition: 'opacity 0.5s ease'
+                });
+                toast.innerHTML = `<i class="fas fa-check-circle"></i> ${productName} added to cart!`;
+                document.body.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => document.body.removeChild(toast), 500);
+                }, 3000);
             });
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const toast = document.createElement('div');
+            Object.assign(toast.style, {
+                position: 'fixed',
+                bottom: '20px',
+                right: '20px',
+                backgroundColor: '#4CAF50',
+                color: '#fff',
+                padding: '0.8rem 1.2rem',
+                borderRadius: '4px',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                zIndex: '1000',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                opacity: '1',
+                transition: 'opacity 0.5s ease'
+            });
+            toast.innerHTML = `<i class="fas fa-check-circle"></i> Subscribed successfully!`;
+            document.body.appendChild(toast);
+            this.reset();
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => document.body.removeChild(toast), 500);
+            }, 3000);
         });
     </script>
 </body>

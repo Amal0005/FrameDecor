@@ -1,0 +1,89 @@
+<head>
+    <link rel="stylesheet" href="../styles/signup.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Left Side - Visual -->
+        <div class="visual-side">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-square"></div>
+                    Frame<span class="logo-highlight">Decor</span>
+                </div>
+            </div>
+            
+            <div class="frames-showcase">
+                <div class="frame frame-1"></div>
+                <div class="frame frame-2"></div>
+                <div class="frame frame-3"></div>
+                
+                <div class="floating-elements">
+                    <div class="floating-square sq1"></div>
+                    <div class="floating-square sq2"></div>
+                    <div class="floating-square sq3"></div>
+                </div>
+            </div>
+            
+            <p class="tagline">Transform your space with <strong>artfully crafted frames</strong> that tell your story.</p>
+        </div>
+        
+        <!-- Right Side - Form -->
+        <div class="form-side">
+            <div class="form-side-background"></div>
+            
+            <div class="form-header">
+                <h1>Create Your Account</h1>
+                <p>Join our community of home decor enthusiasts and get exclusive access to limited collections.</p>
+            </div>
+            
+            <form id="signup-form" method="post" action="/signup">
+                <div class="input-group">
+                    <input type="text" id="fullName" placeholder=" " name="name">
+                    <label for="fullName">Full Name</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="email" id="email" placeholder=" " name="email">
+                    <label for="email">Email Address</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="phone" placeholder=" " name="mobile">
+                    <label for="number">Mobile Number</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder=" " name="password">
+                    <label for="password">Password</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="confirmPassword" placeholder=" " name="cPassword">
+                    <label for="confirmPassword">Confirm Password</label>
+                </div>
+                
+                <button type="submit" class="btn-signup">
+                    Create Account
+                </button>
+            </form>
+            
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+            
+            <div class="social-signup">
+                <button class="social-btn">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="social-btn">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+            </div>
+            
+            <div class="login-link">
+                <span>Already have an account?</span>
+                <a href="/signup">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
