@@ -1,89 +1,221 @@
 <head>
-    <link rel="stylesheet" href="../styles/signup.css">
+  <link rel="stylesheet" href="../styles/signup.css" />
 </head>
 <body>
-    <div class="page-container">
-        <!-- Left Side - Visual -->
-        <div class="visual-side">
-            <div class="logo-container">
-                <div class="logo">
-                    <div class="logo-square"></div>
-                    Frame<span class="logo-highlight">Decor</span>
-                </div>
-            </div>
-            
-            <div class="frames-showcase">
-                <div class="frame frame-1"></div>
-                <div class="frame frame-2"></div>
-                <div class="frame frame-3"></div>
-                
-                <div class="floating-elements">
-                    <div class="floating-square sq1"></div>
-                    <div class="floating-square sq2"></div>
-                    <div class="floating-square sq3"></div>
-                </div>
-            </div>
-            
-            <p class="tagline">Transform your space with <strong>artfully crafted frames</strong> that tell your story.</p>
+  <div class="page-container">
+    <!-- Left Side - Visual -->
+    <div class="visual-side">
+      <div class="logo-container">
+        <div class="logo">
+          <div class="logo-square"></div>
+          Frame<span class="logo-highlight">Decor</span>
         </div>
-        
-        <!-- Right Side - Form -->
-        <div class="form-side">
-            <div class="form-side-background"></div>
-            
-            <div class="form-header">
-                <h1>Create Your Account</h1>
-                <p>Join our community of home decor enthusiasts and get exclusive access to limited collections.</p>
-            </div>
-            
-            <form id="signup-form" method="post" action="/signup">
-                <div class="input-group">
-                    <input type="text" id="fullName" placeholder=" " name="name">
-                    <label for="fullName">Full Name</label>
-                </div>
-                
-                <div class="input-group">
-                    <input type="email" id="email" placeholder=" " name="email">
-                    <label for="email">Email Address</label>
-                </div>
-                <div class="input-group">
-                    <input type="number" id="phone" placeholder=" " name="mobile">
-                    <label for="number">Mobile Number</label>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="password" placeholder=" " name="password">
-                    <label for="password">Password</label>
-                </div>
-                
-                <div class="input-group">
-                    <input type="password" id="confirmPassword" placeholder=" " name="cPassword">
-                    <label for="confirmPassword">Confirm Password</label>
-                </div>
-                
-                <button type="submit" class="btn-signup">
-                    Create Account
-                </button>
-            </form>
-            
-            <div class="divider">
-                <span>or continue with</span>
-            </div>
-            
-            <div class="social-signup">
-                <button class="social-btn">
-                    <i class="fab fa-google"></i> Google
-                </button>
-                <button class="social-btn">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </button>
-            </div>
-            
-            <div class="login-link">
-                <span>Already have an account?</span>
-                <a href="/signup">Sign in</a>
-            </div>
+      </div>
+
+      <div class="frames-showcase">
+        <div class="frame frame-1"></div>
+        <div class="frame frame-2"></div>
+        <div class="frame frame-3"></div>
+
+        <div class="floating-elements">
+          <div class="floating-square sq1"></div>
+          <div class="floating-square sq2"></div>
+          <div class="floating-square sq3"></div>
         </div>
+      </div>
+
+      <p class="tagline">
+        Transform your space with <strong>artfully crafted frames</strong> that
+        tell your story.
+      </p>
     </div>
 
-   
+    <!-- Right Side - Form -->
+    <div class="form-side">
+      <div class="form-side-background"></div>
+
+      <div class="form-header">
+        <h1>Create Your Account</h1>
+        <p>
+          Join our community of home decor enthusiasts and get exclusive access
+          to limited collections.
+        </p>
+      </div>
+
+      <form id="signup-form" method="post" action="/signup">
+        <div class="input-group">
+          <input type="text" id="fullName" placeholder=" " name="name" />
+          <label for="fullName">Full Name</label>
+          <div id="error1" class="error"></div>
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="email" placeholder=" " name="email" />
+          <label for="email">Email Address</label>
+          <div id="error2" class="error"></div>
+        </div>
+        <div class="input-group">
+          <input type="number" id="phone" placeholder=" " name="mobile" />
+          <label for="number">Mobile Number</label>
+          <div id="error3" class="error"></div>
+        </div>
+        <div class="input-group">
+          <input
+            type="password"
+            id="password"
+            placeholder=" "
+            name="password"
+          />
+          <label for="password">Password</label>
+          <div id="error4" class="error"></div>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder=" "
+            name="cPassword"
+          />
+          <label for="confirmPassword">Confirm Password</label>
+          <div id="error5" class="error"></div>
+        </div>
+
+        <button type="submit" class="btn-signup">Create Account</button>
+      </form>
+
+      <div class="divider">
+        <span>or continue with</span>
+      </div>
+
+      <div class="social-signup">
+        <button class="social-btn"><i class="fab fa-google"></i> Google</button>
+        <button class="social-btn">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </button>
+      </div>
+
+      <div class="login-link">
+        <span>Already have an account?</span>
+        <a href="/signup">Sign in</a>
+      </div>
+    </div>
+  </div>
 </body>
+
+<script>
+  const nameId = document.getElementById("fullName");
+  const emailId = document.getElementById("email");
+  const phoneId = document.getElementById("phone");
+  const passwordId = document.getElementById("password");
+  const cPasswordId = document.getElementById("confirmPassword");
+  const error1 = document.getElementById("error1");
+  const error2 = document.getElementById("error2");
+  const error3 = document.getElementById("error3");
+  const error4 = document.getElementById("error4");
+  const error5 = document.getElementById("error5");
+  const signupForm = document.getElementById("signup-form");
+
+  function nameValidation(e) {
+    const namevalue = nameId.value;
+    const namepattern = /^[A-Za-z\s]+$/;
+    if (namevalue.trim() =="") {
+      error1.style.display = "block";
+      error1.innerHTML = "Please enter a valid name";
+    } else if (!namepattern.test(namevalue)) {
+      error1.style.display = "block";
+      error1.innerHTML = "Name can only contain letters and spaces";
+    } else {
+      error1.style.display = "none";
+      error1.innerHTML = "";
+    }
+  }
+  function emailValidation(e) {
+    const emailvalue = emailId.value;
+    const emialPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (emailvalue.trim() =="") {
+      error2.style.display = "block";
+      error2.innerHTML = "Please enter a valid email";
+    } else if (!emialPattern.test(emailvalue)) {
+      error2.style.display = "block";
+      error2.innerHTML = "Please enter a valid email";
+    } else {
+      error2.style.display = "none";
+      error2.innerHTML = "";
+    }
+  }
+
+  function phoneValidation(e) {
+    const phonevalue = phoneId.value;
+    const phonepattern = /^[6-9]\d{9}$/;
+    if (phonevalue.trim() =="") {
+      error3.style.display = "block";
+      error3.innerHTML = "Please enter a valid phone";
+    } else if (!phonepattern.test(phonevalue)) {
+      error3.style.display = "block";
+      error3.innerHTML =
+        "Please enter a valid 10-digit mobile number starting with 6-9";
+    } else {
+      error3.style.display = "none";
+      error3.innerHTML = "";
+    }
+  }
+
+  function passwordValidation(e) {
+    const passwordvalue = passwordId.value;
+    const passwordpattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    if (passwordvalue.trim() =="") {
+      error4.style.display = "block";
+      error4.innerHTML = "Please enter a valid password";
+    } else if (!passwordpattern.test(passwordvalue)) {
+      error4.style.display = "block";
+      error4.innerHTML =
+        "Password must be 8+ characters with uppercase, lowercase, number, and special character";
+    } else {
+      error4.style.display = "none";
+      error4.innerHTML = "";
+    }
+  }
+
+  function cPasswordValidation(e) {
+    const cPasswordvalue = cPasswordId.value;
+    const passwordvalue = passwordId.value;
+    if (cPasswordvalue.trim() =="") {
+      error5.style.display = "block";
+      error5.innerHTML = "Please confirm your password";
+    } else if (cPasswordvalue !== passwordvalue) {
+      error5.style.display = "block";
+      error5.innerHTML = "Password do not match";
+    } else {
+      error5.style.display = "none";
+      error5.innerHTML = "";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    signupForm.addEventListener("submit", function (e) {
+        nameValidation();
+        emailValidation();
+        phoneValidation();
+        passwordValidation();
+        cPasswordValidation();
+        if (
+          !nameId ||
+          !emailId ||
+          !passwordId ||
+          !cPasswordId ||
+          !phoneId ||
+          !error1 ||
+          !error2 ||
+          !error3 ||
+          !error4 ||
+          !error5
+        ) {
+          console.log("one or more fields are missing");
+        }
+        if (error1.innerHTML || error2.innerHTML || error3.innerHTML || error4.innerHTML || error5.innerHTML) {
+    e.preventDefault();
+}
+      });
+  });
+</script>

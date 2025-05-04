@@ -412,3 +412,9 @@ body {
 .divider { animation-delay: 0.7s; }
 .social-signup { animation-delay: 0.8s; }
 .login-link { animation-delay: 0.9s; }
+
+.error{
+    color: red;
+    font-size: 0.5rem;
+    display: none;
+}
