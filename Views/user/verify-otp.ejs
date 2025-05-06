@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f5f2eb;
+            color: #3a3a3a;
+            overflow-x: hidden;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary: #a87b46;
+            --secondary: #4a392c;
+            --accent: #e8cba8;
+            --white: #ffffff;
+            --dark: #212121;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Main Layout */
+        .page-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        /* Left Side - Visual */
+        .visual-side {
+            background-color: var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .logo-square {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary);
+            margin-right: 8px;
+            transform: rotate(45deg);
+        }
+
+        .frames-showcase {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .frame {
+            position: absolute;
+            border: 12px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+        }
+
+        .frame-1 {
+            width: 220px;
+            height: 300px;
+            transform: rotate(-15deg) translateX(-40px);
+            background: url("/api/placeholder/300/420") center/cover;
+            z-index: 3;
+        }
+
+        .frame-2 {
+            width: 200px;
+            height: 200px;
+            transform: rotate(8deg) translate(100px, -50px);
+            background: url("/api/placeholder/200/200") center/cover;
+            z-index: 2;
+        }
+
+        .frame-3 {
+            width: 180px;
+            height: 250px;
+            transform: rotate(-5deg) translate(-120px, 120px);
+            background: url("/api/placeholder/180/250") center/cover;
+            z-index: 1;
+        }
+
+        .tagline {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--secondary);
+            max-width: 80%;
+            line-height: 1.4;
+        }
+
+        .tagline strong {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Right Side - Verification Form */
+        .form-side {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+        }
+
+        .form-header h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .form-header p {
+            color: #6a6a6a;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .otp-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .otp-input {
+            width: 60px;
+            height: 70px;
+            border: none;
+            background-color: #f0eae0;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--secondary);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .otp-input:focus {
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            outline: 2px solid var(--primary);
+        }
+
+        .resend-timer {
+            text-align: center;
+            margin: 20px 0;
+            color: #8a8a8a;
+            font-size: 14px;
+        }
+
+        .resend-timer span {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .btn-verify {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-verify:hover {
+            background-color: #8c6737;
+            transform: translateY(-3px);
+        }
+
+        .btn-verify::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1);
+            transition: 0.9s;
+        }
+
+        .btn-verify:active::after {
+            opacity: 1;
+            transform: scale(50);
+            transition: 0s;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 15px;
+            color: #6a6a6a;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .form-side-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#e8cba8 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-square {
+            position: absolute;
+            background-color: var(--primary);
+            opacity: 0.1;
+            border-radius: 3px;
+        }
+
+        .sq1 {
+            width: 50px;
+            height: 50px;
+            top: 15%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .sq2 {
+            width: 30px;
+            height: 30px;
+            top: 70%;
+            left: 20%;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .sq3 {
+            width: 70px;
+            height: 70px;
+            top: 40%;
+            right: 10%;
+            animation: float 10s ease-in-out infinite 1s;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .page-container {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-side {
+                display: none;
+            }
+
+            .form-side {
+                padding: 40px 20px;
+            }
+            
+            .form-header h1 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .otp-container {
+                gap: 8px;
+            }
+            
+            .otp-input {
+                width: 50px;
+                height: 60px;
+                font-size: 20px;
+            }
+        }
+
+        /* Animations for Form Elements */
+        .form-header, .otp-container, .resend-timer, .btn-verify, .back-link {
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .form-header { animation-delay: 0.1s; }
+        .otp-container { animation-delay: 0.3s; }
+        .resend-timer { animation-delay: 0.5s; }
+        .btn-verify { animation-delay: 0.7s; }
+        .back-link { animation-delay: 0.9s; }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Left Side - Visual -->
+        <div class="visual-side">
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="logo-square"></span>
+                    Frame<span class="logo-highlight">It</span>
+                </div>
+            </div>
+            
+            <div class="frames-showcase">
+                <div class="frame frame-1"></div>
+                <div class="frame frame-2"></div>
+                <div class="frame frame-3"></div>
+            </div>
+            
+            <div class="tagline">
+                Verify your account to <strong>preserve memories</strong> that last a lifetime.
+            </div>
+            
+            <div class="floating-elements">
+                <div class="floating-square sq1"></div>
+                <div class="floating-square sq2"></div>
+                <div class="floating-square sq3"></div>
+            </div>
+        </div>
+        
+        <!-- Right Side - Verification Form -->
+        <div class="form-side">
+            <div class="form-side-background"></div>
+            
+            <div class="form-header">
+                <h1>Verify Your Account</h1>
+                <p>We've sent a verification code to your email address. Please enter the code below to complete your registration.</p>
+            </div>
+            
+            <div class="otp-container">
+                <input type="text" class="otp-input" maxlength="1" autofocus onkeyup="moveToNext(this, 1)">
+                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 2)">
+                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 3)">
+                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 4)">
+                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 5)">
+                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 6)">
+            </div>
+            
+            <div class="resend-timer">
+                Didn't receive the code? <span id="timer">Resend in 60s</span>
+            </div>
+            
+            <div class="error" id="error-message">Invalid verification code. Please try again.</div>
+            
+            <button class="btn-verify" onclick="verifyOTP()">Verify & Continue</button>
+            
+            <div class="back-link">
+                <a href="#" onclick="goBack()">Back to Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Move to next input field
+        function moveToNext(field, nextFieldNum) {
+            if (field.value.length >= field.maxLength) {
+                const nextField = document.getElementsByClassName('otp-input')[nextFieldNum];
+                if (nextField) {
+                    nextField.focus();
+                }
+            }
+            
+            // Allow backspace to go to previous field
+            field.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && field.value.length === 0 && nextFieldNum > 0) {
+                    const prevField = document.getElementsByClassName('otp-input')[nextFieldNum - 1];
+                    if (prevField) {
+                        prevField.focus();
+                    }
+                }
+            });
+        }
+        
+        // Timer countdown
+        let timeLeft = 60;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(function() {
+            timeLeft--;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerElement.innerHTML = '<a href="#" onclick="resendOTP()">Resend code</a>';
+            } else {
+                timerElement.innerHTML = `Resend in ${timeLeft}s`;
+            }
+        }, 1000);
+        
+        // Verify OTP function
+        function verifyOTP() {
+            const inputs = document.getElementsByClassName('otp-input');
+            let otp = '';
+            
+            // Collect OTP from inputs
+            for (let i = 0; i < inputs.length; i++) {
+                otp += inputs[i].value;
+            }
+            
+            // Example validation (replace with actual validation)
+            if (otp.length === 6 && !isNaN(otp)) {
+                // Success case
+                window.location.href = 'dashboard.html'; // Redirect to dashboard page
+            } else {
+                // Show error
+                document.getElementById('error-message').style.display = 'block';
+                
+                // Shake the OTP fields to indicate error
+                const otpContainer = document.querySelector('.otp-container');
+                otpContainer.style.animation = 'none';
+                setTimeout(() => {
+                    otpContainer.style.animation = 'shake 0.5s';
+                }, 10);
+            }
+        }
+        
+        // Resend OTP function
+        function resendOTP() {
+            // Reset timer
+            timeLeft = 60;
+            timerElement.innerHTML = `Resend in ${timeLeft}s`;
+            
+            // Restart countdown
+            const countdown = setInterval(function() {
+                timeLeft--;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerElement.innerHTML = '<a href="#" onclick="resendOTP()">Resend code</a>';
+                } else {
+                    timerElement.innerHTML = `Resend in ${timeLeft}s`;
+                }
+            }, 1000);
+            
+            // Show confirmation message
+            const messageElem = document.createElement('div');
+            messageElem.textContent = 'Verification code resent!';
+            messageElem.style.color = 'green';
+            messageElem.style.textAlign = 'center';
+            messageElem.style.marginTop = '10px';
+            messageElem.style.fontSize = '14px';
+            
+            const resendTimer = document.querySelector('.resend-timer');
+            resendTimer.appendChild(messageElem);
+            
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                messageElem.remove();
+            }, 3000);
+        }
+        
+        // Go back function
+        function goBack() {
+            window.history.back();
+        }
+        
+        // Add shake animation for error indication
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            </style>
+        `);
+    </script>
+</body>
+</html>
