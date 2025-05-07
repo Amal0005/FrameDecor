@@ -1,5 +1,5 @@
- <!-- Footer -->
- <footer>
+<!-- Footer -->
+<footer>
     <div class="container">
         <div class="footer-content">
             <div class="footer-column">
@@ -34,5 +34,199 @@
         <div class="footer-bottom">
             <p>© 2025 FrameDecor. All rights reserved.</p>
         </div>
+        <div class="floating-elements">
+            <div class="floating-square sq1"></div>
+            <div class="floating-square sq2"></div>
+            <div class="floating-square sq3"></div>
+        </div>
     </div>
+    <style>
+        /* Footer */
+        footer {
+            background: var(--white);
+            padding: 3rem 0 1rem;
+            position: relative;
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .footer-column p {
+            color: #6a6a6a;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--dark);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+            color: #6a6a6a;
+            font-size: 0.9rem;
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-square {
+            position: absolute;
+            background-color: var(--primary);
+            opacity: 0.15;
+            border-radius: 2px;
+        }
+
+        .sq1 {
+            width: 50px;
+            height: 50px;
+            top: 15%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .sq2 {
+            width: 30px;
+            height: 30px;
+            top: 70%;
+            left: 20%;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .sq3 {
+            width: 70px;
+            height: 70px;
+            top: 40%;
+            right: 10%;
+            animation: float 10s ease-in-out infinite 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation for Footer */
+        footer {
+            opacity: 0;
+            animation: fadeInUp 0.6s forwards;
+            animation-delay: 1s;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 2rem 0 1rem;
+            }
+
+            .footer-content {
+                gap: 1.5rem;
+            }
+
+            .footer-column h3 {
+                font-size: 1.1rem;
+            }
+
+            .footer-column p, .footer-column ul li a {
+                font-size: 0.85rem;
+            }
+
+            .social-link {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer-column h3 {
+                font-size: 1rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </footer>

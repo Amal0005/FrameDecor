@@ -1,221 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="../styles/signup.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Sign Up - FrameDecor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f5f2eb;
+            color: #3a3a3a;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        :root {
+            --primary: #a87b46;
+            --secondary: #4a392c;
+            --accent: #e8cba8;
+            --white: #ffffff;
+            --dark: #212121;
+            --transition: all 0.3s ease-out;
+        }
+
+        .page-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+            max-width: 900px;
+            margin: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .visual-side {
+            background-color: var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .logo-square {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            margin-right: 5px;
+            transform: rotate(45deg);
+        }
+
+        .frames-showcase {
+            position: relative;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .frame {
+            position: absolute;
+            border: 6px solid var(--white);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .frame-1 {
+            width: 150px;
+            height: 210px;
+            transform: rotate(-12deg) translateX(-25px);
+            background: url("https://via.placeholder.com/300x420") center/cover;
+            z-index: 3;
+        }
+
+        .frame-2 {
+            width: 130px;
+            height: 130px;
+            transform: rotate(6deg) translate(65px, -30px);
+            background: url("https://via.placeholder.com/200x200") center/cover;
+            z-index: 2;
+        }
+
+        .frame-3 {
+            width: 120px;
+            height: 170px;
+            transform: rotate(-4deg) translate(-80px, 80px);
+            background: url("https://via.placeholder.com/180x250") center/cover;
+            z-index: 1;
+        }
+
+        .tagline {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--secondary);
+            max-width: 90%;
+            line-height: 1.3;
+        }
+
+        .tagline strong {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-side {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background-color: var(--white);
+        }
+
+        .form-side-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#e8cba8 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+
+        .form-header p {
+            color: #6a6a6a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: none;
+            background-color: #f0eae0;
+            border-radius: 5px;
+            font-size: 13px;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            color: #8a8a8a;
+            font-size: 13px;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus,
+        .input-group input:not(:placeholder-shown) {
+            background-color: var(--white);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: -8px;
+            transform: translateY(0) scale(0.85);
+            color: var(--primary);
+            font-weight: 500;
+            background: var(--white);
+            padding: 0 4px;
+        }
+
+        .input-group input:focus {
+            outline: 1px solid var(--primary);
+        }
+
+        .error {
+            color: red;
+            font-size: 11px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .btn-signup {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .btn-signup:hover {
+            background-color: #8c6737;
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #8a8a8a;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        .divider span {
+            padding: 0 10px;
+            font-size: 12px;
+        }
+
+        .social-signup {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background: var(--white);
+            color: var(--dark);
+            font-size: 12px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .social-btn i {
+            margin-right: 6px;
+            font-size: 14px;
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary);
+            background-color: #faf7f2;
+        }
+
+        .login-link {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #6a6a6a;
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 3px;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-square {
+            position: absolute;
+            background-color: var(--primary);
+            opacity: 0.15;
+            border-radius: 2px;
+        }
+
+        .sq1 {
+            width: 35px;
+            height: 35px;
+            top: 20%;
+            left: 15%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .sq2 {
+            width: 20px;
+            height: 20px;
+            top: 65%;
+            left: 25%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .sq3 {
+            width: 50px;
+            height: 50px;
+            top: 45%;
+            right: 15%;
+            animation: float 9s ease-in-out infinite 0.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-12px) rotate(4deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-header, .input-group, .btn-signup, .divider, .social-signup, .login-link {
+            opacity: 0;
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .form-header { animation-delay: 0.1s; }
+        .input-group:nth-child(1) { animation-delay: 0.2s; }
+        .input-group:nth-child(2) { animation-delay: 0.3s; }
+        .input-group:nth-child(3) { animation-delay: 0.4s; }
+        .input-group:nth-child(4) { animation-delay: 0.5s; }
+        .input-group:nth-child(5) { animation-delay: 0.6s; }
+        .btn-signup { animation-delay: 0.7s; }
+        .divider { animation-delay: 0.8s; }
+        .social-signup { animation-delay: 0.9s; }
+        .login-link { animation-delay: 1s; }
+
+        @media (max-width: 768px) {
+            .page-container {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin: 15px;
+            }
+
+            .visual-side {
+                display: none;
+            }
+
+            .form-side {
+                padding: 25px 15px;
+            }
+
+            .form-header h1 {
+                font-size: 22px;
+            }
+
+            .form-header p {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-side {
+                padding: 20px 12px;
+            }
+
+            .social-signup {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .input-group input {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .input-group label {
+                font-size: 12px;
+            }
+
+            .btn-signup {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="page-container">
-    <!-- Left Side - Visual -->
-    <div class="visual-side">
-      <div class="logo-container">
-        <div class="logo">
-          <div class="logo-square"></div>
-          Frame<span class="logo-highlight">Decor</span>
+    <div class="page-container">
+        <!-- Left Side - Visual -->
+        <div class="visual-side">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-square"></div>
+                    Frame<span class="logo-highlight">Decor</span>
+                </div>
+            </div>
+
+            <div class="frames-showcase">
+                <div class="frame frame-1"></div>
+                <div class="frame frame-2"></div>
+                <div class="frame frame-3"></div>
+
+                <div class="floating-elements">
+                    <div class="floating-square sq1"></div>
+                    <div class="floating-square sq2"></div>
+                    <div class="floating-square sq3"></div>
+                </div>
+            </div>
+
+            <p class="tagline">
+                Transform your space with <strong>artfully crafted frames</strong> that tell your story.
+            </p>
         </div>
-      </div>
 
-      <div class="frames-showcase">
-        <div class="frame frame-1"></div>
-        <div class="frame frame-2"></div>
-        <div class="frame frame-3"></div>
+        <!-- Right Side - Form -->
+        <div class="form-side">
+            <div class="form-side-background"></div>
 
-        <div class="floating-elements">
-          <div class="floating-square sq1"></div>
-          <div class="floating-square sq2"></div>
-          <div class="floating-square sq3"></div>
+            <div class="form-header">
+                <h1>Create Your Account</h1>
+                <p>Join our community of home decor enthusiasts and get exclusive access to limited collections.</p>
+            </div>
+
+            <form id="signup-form" method="post" action="/signup">
+                <div class="input-group">
+                    <input type="text" id="fullName" placeholder=" " name="name" />
+                    <label for="fullName">Full Name</label>
+                    <div id="error1" class="error"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="email" placeholder=" " name="email" />
+                    <label for="email">Email Address</label>
+                    <div id="error2" class="error"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="tel" id="phone" placeholder=" " name="mobile" />
+                    <label for="phone">Mobile Number</label>
+                    <div id="error3" class="error"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" placeholder=" " name="password" />
+                    <label for="password">Password</label>
+                    <div id="error4" class="error"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="confirmPassword" placeholder=" " name="cPassword" />
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div id="error5" class="error"></div>
+                </div>
+
+                <button type="submit" class="btn-signup">Create Account</button>
+            </form>
+
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+
+            <div class="social-signup">
+                <button class="social-btn"><i class="fab fa-google"></i> Google</button>
+                <button class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</button>
+            </div>
+
+            <div class="login-link">
+                <span>Already have an account?</span>
+                <a href="/login">Sign in</a>
+            </div>
         </div>
-      </div>
-
-      <p class="tagline">
-        Transform your space with <strong>artfully crafted frames</strong> that
-        tell your story.
-      </p>
     </div>
 
-    <!-- Right Side - Form -->
-    <div class="form-side">
-      <div class="form-side-background"></div>
-
-      <div class="form-header">
-        <h1>Create Your Account</h1>
-        <p>
-          Join our community of home decor enthusiasts and get exclusive access
-          to limited collections.
-        </p>
-      </div>
-
-      <form id="signup-form" method="post" action="/signup">
-        <div class="input-group">
-          <input type="text" id="fullName" placeholder=" " name="name" />
-          <label for="fullName">Full Name</label>
-          <div id="error1" class="error"></div>
-        </div>
-
-        <div class="input-group">
-          <input type="email" id="email" placeholder=" " name="email" />
-          <label for="email">Email Address</label>
-          <div id="error2" class="error"></div>
-        </div>
-        <div class="input-group">
-          <input type="number" id="phone" placeholder=" " name="mobile" />
-          <label for="number">Mobile Number</label>
-          <div id="error3" class="error"></div>
-        </div>
-        <div class="input-group">
-          <input
-            type="password"
-            id="password"
-            placeholder=" "
-            name="password"
-          />
-          <label for="password">Password</label>
-          <div id="error4" class="error"></div>
-        </div>
-
-        <div class="input-group">
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder=" "
-            name="cPassword"
-          />
-          <label for="confirmPassword">Confirm Password</label>
-          <div id="error5" class="error"></div>
-        </div>
-
-        <button type="submit" class="btn-signup">Create Account</button>
-      </form>
-
-      <div class="divider">
-        <span>or continue with</span>
-      </div>
-
-      <div class="social-signup">
-        <button class="social-btn"><i class="fab fa-google"></i> Google</button>
-        <button class="social-btn">
-          <i class="fab fa-facebook-f"></i> Facebook
-        </button>
-      </div>
-
-      <div class="login-link">
-        <span>Already have an account?</span>
-        <a href="/signup">Sign in</a>
-      </div>
-    </div>
-  </div>
-</body>
-
-<script>
-  const nameId = document.getElementById("fullName");
-  const emailId = document.getElementById("email");
-  const phoneId = document.getElementById("phone");
-  const passwordId = document.getElementById("password");
-  const cPasswordId = document.getElementById("confirmPassword");
-  const error1 = document.getElementById("error1");
-  const error2 = document.getElementById("error2");
-  const error3 = document.getElementById("error3");
-  const error4 = document.getElementById("error4");
-  const error5 = document.getElementById("error5");
-  const signupForm = document.getElementById("signup-form");
-
-  function nameValidation(e) {
-    const namevalue = nameId.value;
-    const namepattern = /^[A-Za-z\s]+$/;
-    if (namevalue.trim() =="") {
-      error1.style.display = "block";
-      error1.innerHTML = "Please enter a valid name";
-    } else if (!namepattern.test(namevalue)) {
-      error1.style.display = "block";
-      error1.innerHTML = "Name can only contain letters and spaces";
-    } else {
-      error1.style.display = "none";
-      error1.innerHTML = "";
-    }
-  }
-  function emailValidation(e) {
-    const emailvalue = emailId.value;
-    const emialPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (emailvalue.trim() =="") {
-      error2.style.display = "block";
-      error2.innerHTML = "Please enter a valid email";
-    } else if (!emialPattern.test(emailvalue)) {
-      error2.style.display = "block";
-      error2.innerHTML = "Please enter a valid email";
-    } else {
-      error2.style.display = "none";
-      error2.innerHTML = "";
-    }
-  }
-
-  function phoneValidation(e) {
-    const phonevalue = phoneId.value;
-    const phonepattern = /^[6-9]\d{9}$/;
-    if (phonevalue.trim() =="") {
-      error3.style.display = "block";
-      error3.innerHTML = "Please enter a valid phone";
-    } else if (!phonepattern.test(phonevalue)) {
-      error3.style.display = "block";
-      error3.innerHTML =
-        "Please enter a valid 10-digit mobile number starting with 6-9";
-    } else {
-      error3.style.display = "none";
-      error3.innerHTML = "";
-    }
-  }
-
-  function passwordValidation(e) {
-    const passwordvalue = passwordId.value;
-    const passwordpattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    if (passwordvalue.trim() =="") {
-      error4.style.display = "block";
-      error4.innerHTML = "Please enter a valid password";
-    } else if (!passwordpattern.test(passwordvalue)) {
-      error4.style.display = "block";
-      error4.innerHTML =
-        "Password must be 8+ characters with uppercase, lowercase, number, and special character";
-    } else {
-      error4.style.display = "none";
-      error4.innerHTML = "";
-    }
-  }
-
-  function cPasswordValidation(e) {
-    const cPasswordvalue = cPasswordId.value;
-    const passwordvalue = passwordId.value;
-    if (cPasswordvalue.trim() =="") {
-      error5.style.display = "block";
-      error5.innerHTML = "Please confirm your password";
-    } else if (cPasswordvalue !== passwordvalue) {
-      error5.style.display = "block";
-      error5.innerHTML = "Password do not match";
-    } else {
-      error5.style.display = "none";
-      error5.innerHTML = "";
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    signupForm.addEventListener("submit", function (e) {
-        nameValidation();
-        emailValidation();
-        phoneValidation();
-        passwordValidation();
-        cPasswordValidation();
-        if (
-          !nameId ||
-          !emailId ||
-          !passwordId ||
-          !cPasswordId ||
-          !phoneId ||
-          !error1 ||
-          !error2 ||
-          !error3 ||
-          !error4 ||
-          !error5
-        ) {
-          console.log("one or more fields are missing");
+    <script>
+      const nameId = document.getElementById("fullName");
+      const emailId = document.getElementById("email");
+      const phoneId = document.getElementById("phone");
+      const passwordId = document.getElementById("password");
+      const cPasswordId = document.getElementById("confirmPassword");
+      const error1 = document.getElementById("error1");
+      const error2 = document.getElementById("error2");
+      const error3 = document.getElementById("error3");
+      const error4 = document.getElementById("error4");
+      const error5 = document.getElementById("error5");
+      const signupForm = document.getElementById("signup-form");
+    
+      function nameValidation(e) {
+        const namevalue = nameId.value;
+        const namepattern = /^[A-Za-z\s]+$/;
+        if (namevalue.trim() =="") {
+          error1.style.display = "block";
+          error1.innerHTML = "Please enter a valid name";
+        } else if (!namepattern.test(namevalue)) {
+          error1.style.display = "block";
+          error1.innerHTML = "Name can only contain letters and spaces";
+        } else {
+          error1.style.display = "none";
+          error1.innerHTML = "";
         }
-        if (error1.innerHTML || error2.innerHTML || error3.innerHTML || error4.innerHTML || error5.innerHTML) {
-    e.preventDefault();
-}
+      }
+      function emailValidation(e) {
+        const emailvalue = emailId.value;
+        const emialPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (emailvalue.trim() =="") {
+          error2.style.display = "block";
+          error2.innerHTML = "Please enter a valid email";
+        } else if (!emialPattern.test(emailvalue)) {
+          error2.style.display = "block";
+          error2.innerHTML = "Please enter a valid email";
+        } else {
+          error2.style.display = "none";
+          error2.innerHTML = "";
+        }
+      }
+    
+      function phoneValidation(e) {
+        const phonevalue = phoneId.value;
+        const phonepattern = /^[6-9]\d{9}$/;
+        if (phonevalue.trim() =="") {
+          error3.style.display = "block";
+          error3.innerHTML = "Please enter a valid phone";
+        } else if (!phonepattern.test(phonevalue)) {
+          error3.style.display = "block";
+          error3.innerHTML =
+            "Please enter a valid 10-digit mobile number starting with 6-9";
+        } else {
+          error3.style.display = "none";
+          error3.innerHTML = "";
+        }
+      }
+    
+      function passwordValidation(e) {
+        const passwordvalue = passwordId.value;
+        const passwordpattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        if (passwordvalue.trim() =="") {
+          error4.style.display = "block";
+          error4.innerHTML = "Please enter a valid password";
+        } else if (!passwordpattern.test(passwordvalue)) {
+          error4.style.display = "block";
+          error4.innerHTML =
+            "Password must be 8+ characters with uppercase, lowercase, number, and special character";
+        } else {
+          error4.style.display = "none";
+          error4.innerHTML = "";
+        }
+      }
+    
+      function cPasswordValidation(e) {
+        const cPasswordvalue = cPasswordId.value;
+        const passwordvalue = passwordId.value;
+        if (cPasswordvalue.trim() =="") {
+          error5.style.display = "block";
+          error5.innerHTML = "Please confirm your password";
+        } else if (cPasswordvalue !== passwordvalue) {
+          error5.style.display = "block";
+          error5.innerHTML = "Password do not match";
+        } else {
+          error5.style.display = "none";
+          error5.innerHTML = "";
+        }
+      }
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        signupForm.addEventListener("submit", function (e) {
+            nameValidation();
+            emailValidation();
+            phoneValidation();
+            passwordValidation();
+            cPasswordValidation();
+            if (
+              !nameId ||
+              !emailId ||
+              !passwordId ||
+              !cPasswordId ||
+              !phoneId ||
+              !error1 ||
+              !error2 ||
+              !error3 ||
+              !error4 ||
+              !error5
+            ) {
+              console.log("one or more fields are missing");
+            }
+            if (error1.innerHTML || error2.innerHTML || error3.innerHTML || error4.innerHTML || error5.innerHTML) {
+        e.preventDefault();
+    }
+          });
       });
-  });
-</script>
+    </script>
+    
+</body>
+</html>

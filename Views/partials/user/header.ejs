@@ -1,42 +1,25 @@
- <!-- Header -->
- <header>
-    <div class="container">
-        <div class="header-content">
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <a href="/" class="logo">
-                <i class="fas fa-border-all"></i>
-                FrameDecor
+<header>
+    <div class="header-content container">
+        <a href="/" class="logo">
+            <span class="logo-square"></span>
+            Frame<span class="logo-highlight">Decor</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="/signup"><i class="fas fa-user-plus"></i> Signup</a>
+            <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="/cart" class="cart-btn">
+                <i class="fas fa-shopping-cart"></i> Cart
+                <span class="cart-count">3</span>
             </a>
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/products">Shop</a></li>
-                    <li><a href="/categories">Categories</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="header-actions">
-              <a href="#" class="search-btn">
-    <i class="fas fa-search"></i>
-    <span>Search</span>
-</a>
-<a href="/signup" class="signup-btn">
-    <i class="fas fa-user-plus"></i>
-    <span>Signup</span>
-</a>
-<a href="#" class="login-btn">
-    <i class="fas fa-sign-in-alt"></i>
-    <span>Login</span>
-</a>
-<a href="#" class="cart-btn">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-count">0</span>
-</a>
-
-            </div>
         </div>
+        <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
     </div>
 </header>
