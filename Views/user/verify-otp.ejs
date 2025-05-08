@@ -427,121 +427,36 @@
         <!-- Right Side - Verification Form -->
         <div class="form-side">
             <div class="form-side-background"></div>
-
+        
             <div class="form-header">
                 <h1>Verify Your Account</h1>
                 <p>We've sent a verification code to your email address. Please enter the code below to complete your registration.</p>
             </div>
-
-            <div class="otp-container">
-                <input type="text" class="otp-input" maxlength="1" autofocus onkeyup="moveToNext(this, 1)">
-                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 2)">
-                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 3)">
-                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 4)">
-                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 5)">
-                <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 6)">
-            </div>
-
-            <div class="resend-timer">
-                Didn't receive the code? <span id="timer">Resend in 60s</span>
-            </div>
-
-            <div class="error" id="error-message">Invalid verification code. Please try again.</div>
-
-            <button class="btn-verify" onclick="verifyOTP()">Verify & Continue</button>
-
+        
+            <form id="otp-form">
+                <div class="otp-container">
+                    <input type="text" class="otp-input" maxlength="1" autofocus onkeyup="moveToNext(this, 1)">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 2)">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 3)">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 4)">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 5)">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 6)">
+                </div>
+        
+                <div class="resend-timer">
+                    Didn't receive the code? <span id="timer">Resend in 60s</span>
+                </div>
+        
+                <div class="error" id="error-message">Invalid verification code. Please try again.</div>
+        
+                <button type="submit" class="btn-verify" onclick="verifyOTP()">Verify & Continue</button>
+            </form>
+        
             <div class="back-link">
                 <a href="#" onclick="goBack()">Back to Sign Up</a>
             </div>
         </div>
-    </div>
 
-    <script>
-        function moveToNext(field, nextFieldNum) {
-            if (field.value.length >= field.maxLength) {
-                const nextField = document.getElementsByClassName('otp-input')[nextFieldNum];
-                if (nextField) {
-                    nextField.focus();
-                }
-            }
-
-            field.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && field.value.length === 0 && nextFieldNum > 0) {
-                    const prevField = document.getElementsByClassName('otp-input')[nextFieldNum - 1];
-                    if (prevField) {
-                        prevField.focus();
-                    }
-                }
-            });
-        }
-
-        let timeLeft = 60;
-        const timerElement = document.getElementById('timer');
-
-        const countdown = setInterval(function() {
-            timeLeft--;
-
-            if (timeLeft <= 0) {
-                clearInterval(countdown);
-                timerElement.innerHTML = '<a href="#" onclick="resendOTP()">Resend code</a>';
-            } else {
-                timerElement.innerHTML = `Resend in ${timeLeft}s`;
-            }
-        }, 1000);
-
-        function verifyOTP() {
-            const inputs = document.getElementsByClassName('otp-input');
-            let otp = '';
-
-            for (let i = 0; i < inputs.length; i++) {
-                otp += inputs[i].value;
-            }
-
-            if (otp.length === 6 && !isNaN(otp)) {
-                window.location.href = 'dashboard.html';
-            } else {
-                document.getElementById('error-message').style.display = 'block';
-                const otpContainer = document.querySelector('.otp-container');
-                otpContainer.style.animation = 'none';
-                setTimeout(() => {
-                    otpContainer.style.animation = 'shake 0.5s';
-                }, 10);
-            }
-        }
-
-        function resendOTP() {
-            timeLeft = 60;
-            timerElement.innerHTML = `Resend in ${timeLeft}s`;
-
-            const countdown = setInterval(function() {
-                timeLeft--;
-
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    timerElement.innerHTML = '<a href="#" onclick="resendOTP()">Resend code</a>';
-                } else {
-                    timerElement.innerHTML = `Resend in ${timeLeft}s`;
-                }
-            }, 1000);
-
-            const messageElem = document.createElement('div');
-            messageElem.textContent = 'Verification code resent!';
-            messageElem.style.color = 'green';
-            messageElem.style.textAlign = 'center';
-            messageElem.style.marginTop = '8px';
-            messageElem.style.fontSize = '12px';
-
-            const resendTimer = document.querySelector('.resend-timer');
-            resendTimer.appendChild(messageElem);
-
-            setTimeout(() => {
-                messageElem.remove();
-            }, 3000);
-        }
-
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+     
 </body>
 </html>

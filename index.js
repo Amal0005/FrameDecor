@@ -31,7 +31,7 @@ app.use((req,res,next)=>{
     res.set("cache-controll","no-store")
     next()
 })
-app.use("/",userRouter)
+app.use("/",userRouter) 
 
 const PORT = process.env.PORT || 1212;
 app.listen(PORT, () => {
