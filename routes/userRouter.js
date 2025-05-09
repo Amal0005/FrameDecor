@@ -8,4 +8,6 @@ router.get("/pageNotFound",userController.pageNotFound)
 router.get("/signup",userController.loadSignup);
 router.post("/signup",userController.signup)
 
+router.post("/verify-otp",userController.verifyOtp)
+
 module.exports=router
