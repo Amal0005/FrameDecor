@@ -81,7 +81,6 @@ const signup=async(req,res)=>{
         }
         const otp=generateOtp()
         const emailSent=await sendVerificationEmail(email,otp)
-        console.log(emailSent);
         
         if(!emailSent){
             return res.json("email error")
@@ -101,7 +100,10 @@ const verifyOtp=async(req,res)=>{
     try {
         const{otp}=req.body
         const sessionOtp=req.session.userOtp
-        if(otp===sessionOtp){
+        let a=otp.join("")
+        console.log(a);
+        
+        if(a===sessionOtp){
             const {email,password}=req.session.userData
             const newUser=new User({email,password})
 

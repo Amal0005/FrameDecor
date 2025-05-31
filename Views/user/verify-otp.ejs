@@ -433,14 +433,14 @@
                 <p>We've sent a verification code to your email address. Please enter the code below to complete your registration.</p>
             </div>
         
-            <form id="otp-form" method="post">
+            <form id="otp-form" method="post" action="/verify-otp">
                 <div class="otp-container">
-                    <input type="text" class="otp-input" maxlength="1" autofocus onkeyup="moveToNext(this, 1)">
-                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 2)">
-                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 3)">
-                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 4)">
-                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 5)">
-                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 6)">
+                    <input type="text" class="otp-input" name="otp" maxlength="1" autofocus onkeyup="moveToNext(this, 1)">
+                    <input type="text" class="otp-input" name="otp" maxlength="1" onkeyup="moveToNext(this, 2)">
+                    <input type="text" class="otp-input"name="otp" maxlength="1" onkeyup="moveToNext(this, 3)">
+                    <input type="text" class="otp-input" name="otp"maxlength="1" onkeyup="moveToNext(this, 4)">
+                    <input type="text" class="otp-input"name="otp" maxlength="1" onkeyup="moveToNext(this, 5)">
+                    <input type="text" class="otp-input" name="otp"`maxlength="1" onkeyup="moveToNext(this, 6)">
                 </div>
         
                 <div class="resend-timer">
